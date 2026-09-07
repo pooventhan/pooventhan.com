@@ -1,0 +1,156 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SOCIAL_LINKS } from "../consts";
+
+const skills = [
+  {
+    group: "Backend",
+    items: ["REST API design", "Microservices", "MongoDB", "Node / TypeScript"],
+  },
+  {
+    group: "Cloud & DevOps",
+    items: ["Google Cloud Run", "Pub/Sub", "CI/CD pipelines", "Azure DevOps"],
+  },
+  {
+    group: "Quality Engineering",
+    items: [
+      "API test automation",
+      "UI automation",
+      "Load & performance testing",
+      "UAT leadership",
+    ],
+  },
+  {
+    group: "Languages & practices",
+    items: ["C#", "TypeScript", "OOAD", "Agile / Scrum"],
+  },
+];
+
+const certs = [
+  "ISTQB Certified Tester, Foundation Level (CTFL)",
+  "Certified Scrum Master (CSM)",
+];
+---
+
+<BaseLayout title="About" description="About Pooventhan Supramaniam, a software engineer in Kuala Lumpur.">
+  <p class="eyebrow">About</p>
+  <h1>Hi, I'm Pooventhan.</h1>
+
+  <div class="bio">
+    <p>
+      I'm a software engineer based in Kuala Lumpur, Malaysia. I've been doing
+      this for more than 12 years, working across backend development and
+      testing.
+    </p>
+    <p>
+      I started out in test automation and CI/CD, and over time I moved into
+      backend work. These days I spend most of my time building and improving
+      microservices on Google Cloud. Coming from a testing background changed
+      how I build things. I ask early whether something will hold up and how
+      I'll test it, instead of leaving that to the end.
+    </p>
+    <p>
+      I enjoy the quiet parts of the job that not everyone notices. Finding out
+      why something is slow, making a shaky system reliable again, or speeding
+      up a query that keeps dragging. I also like helping my team get better,
+      whether that means setting up automation or just sharing what I've picked
+      up over the years.
+    </p>
+  </div>
+
+  <h2>What I work with</h2>
+  <div class="skills">
+    {
+      skills.map((s) => (
+        <div class="skill-card">
+          <h3>{s.group}</h3>
+          <ul>
+            {s.items.map((i) => (
+              <li>{i}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+
+  <h2>Certifications</h2>
+  <ul class="plain">
+    {certs.map((c) => <li>{c}</li>)}
+  </ul>
+
+  <h2>Education</h2>
+  <p>
+    B.IT, Multimedia University, Malaysia. Dean's List, and a student tutor for
+    C++ along the way.
+  </p>
+
+  <h2>Away from the keyboard</h2>
+  <p>
+    I've volunteered with <strong>SPCA Selangor</strong> caring for rescued
+    animals, and with <strong>Liter of Light</strong> installing solar-powered
+    lighting in rural communities.
+  </p>
+
+  <hr />
+  <p>
+    Find me on {
+      SOCIAL_LINKS.map((link, i) => (
+        <>
+          <a href={link.href} target="_blank" rel="noopener">
+            {link.label}
+          </a>
+          {i < SOCIAL_LINKS.length - 1 ? " · " : "."}
+        </>
+      ))
+    }
+  </p>
+</BaseLayout>
+
+<style>
+  .bio p {
+    font-size: 1.08rem;
+    color: var(--text-muted);
+  }
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1rem;
+  }
+  .skill-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    background: var(--bg-elev);
+  }
+  .skill-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .skill-card ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+  .skill-card li {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+  ul.plain {
+    list-style: none;
+    padding: 0;
+  }
+  ul.plain li {
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  ul.plain li::before {
+    content: "▹";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+  }
+</style>

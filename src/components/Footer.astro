@@ -1,0 +1,48 @@
+---
+import { SOCIAL_LINKS } from "../consts";
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="wrap inner">
+    <p class="muted">© {year} Pooventhan Supramaniam</p>
+    <nav aria-label="Social" class="links">
+      {
+        SOCIAL_LINKS.map((link) => (
+          <a href={link.href} rel="me noopener" target="_blank">
+            {link.label}
+          </a>
+        ))
+      }
+      <a href="/rss.xml">RSS</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  .inner p {
+    margin: 0;
+  }
+  .links {
+    display: flex;
+    gap: 1.1rem;
+  }
+  .links a {
+    color: var(--text-muted);
+  }
+  .links a:hover {
+    color: var(--accent);
+  }
+</style>

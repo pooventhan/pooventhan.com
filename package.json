@@ -1,0 +1,29 @@
+{
+  "name": "pooventhan.com",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pooventhan/pooventhan.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/pooventhan/pooventhan.com/issues"
+  },
+  "homepage": "https://github.com/pooventhan/pooventhan.com#readme",
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.0",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.1",
+    "sharp": "^0.35.4"
+  }
+}
