@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "astro dev",
+    "check": "astro check",
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview"
   },
@@ -27,6 +28,8 @@
     "sharp": "^0.35.4"
   },
   "devDependencies": {
-    "pagefind": "^1.5.2"
+    "@astrojs/check": "^0.9.10",
+    "pagefind": "^1.5.2",
+    "typescript": "^6.0.3"
   }
 }
