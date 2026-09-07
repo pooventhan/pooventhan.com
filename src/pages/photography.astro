@@ -1,0 +1,269 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import nectarHarvest from "../assets/photography/nectar-harvest.jpg";
+
+const COMMONS_PROFILE = "https://commons.wikimedia.org/wiki/User:Poovin91";
+const COMMONS_FILE =
+  "https://commons.wikimedia.org/wiki/File:Nectar_harvest_in_progress.jpg";
+const WLE_WINNERS =
+  "https://commons.wikimedia.org/wiki/Commons:Wiki_Loves_Earth_2020_winners";
+
+// Optimised local gallery images. Drop favourites in src/assets/photography/,
+// import them above, and add entries here — the section renders only when non-empty.
+const gallery: { src: ImageMetadata; alt: string; caption: string }[] = [];
+
+// Places that have reused my openly-licensed Wikimedia Commons photos.
+const featuredIn = [
+  {
+    href: "https://www.atlasobscura.com/places/kellies-castle",
+    site: "Atlas Obscura",
+    title: "Kellie's Castle",
+  },
+  {
+    href: "https://www.prestigeonline.com/my/lifestyle/travel/halloween-the-most-haunted-places-in-malaysia/",
+    site: "Prestige Online",
+    title: "The Most Haunted Places in Malaysia",
+  },
+  {
+    href: "https://www.lifestyleasia.com/ind/travel/asia/haunted-places-in-malaysia-all-you-need-to-know/",
+    site: "Lifestyle Asia",
+    title: "Haunted Places in Malaysia",
+  },
+  {
+    href: "https://www.augustman.com/sg/people/most-haunted-places-in-malaysia-to-visit/",
+    site: "AUGUSTMAN",
+    title: "Most Haunted Places in Malaysia",
+  },
+  {
+    href: "https://ms.wikipedia.org/wiki/Tokong_Gua_Chin_Swee",
+    site: "Wikipedia (Malay)",
+    title: "Tokong Gua Chin Swee",
+  },
+];
+
+const alsoOn = [
+  {
+    href: "https://1000journey.my/en/malaysia-unesco-world-heritage-sites-2025/",
+    site: "1000 Journey",
+    title: "Malaysia UNESCO World Heritage Sites",
+  },
+  {
+    href: "https://hikerhero.com/kl-hiking/",
+    site: "Hiker Hero",
+    title: "KL Hiking",
+  },
+  {
+    href: "https://ummiaroundmalaysia.com/unesco-world-heritage-sites-in-malaysia/",
+    site: "Ummi Around Malaysia",
+    title: "UNESCO World Heritage Sites in Malaysia",
+  },
+  {
+    href: "https://www.voyaguide.org/en/destinations/ipoh",
+    site: "Voyaguide",
+    title: "Ipoh",
+  },
+];
+---
+
+<BaseLayout
+  title="Photography"
+  description="Photography by Pooventhan Supramaniam — Wiki Loves Earth 2020 winner, with work reused across travel guides and publications."
+>
+  <p class="eyebrow">Photography</p>
+  <h1>Behind the lens</h1>
+  <p class="muted intro">
+    I spent a good stretch of time taking photos, mostly out in nature and
+    around Malaysia's landmarks. I share what I like on{" "}
+    <a href={COMMONS_PROFILE} rel="noopener" target="_blank"
+      >Wikimedia Commons</a
+    >{" "}under an open licence — and it's been quietly rewarding to see where
+    they end up.
+  </p>
+
+  <section class="block">
+    <h2>Recognition</h2>
+    <figure class="winner">
+      <a href={COMMONS_FILE} rel="noopener" target="_blank">
+        <Image
+          src={nectarHarvest}
+          alt="A bee collecting nectar from a flower at Bukit Jugra, Malaysia"
+          widths={[352, 704]}
+          sizes="(max-width: 24rem) 100vw, 22rem"
+          loading="eager"
+        />
+      </a>
+      <figcaption>
+        <strong>&ldquo;Nectar harvest in progress&rdquo;</strong> — Winner,{" "}
+        <a href={WLE_WINNERS} rel="noopener" target="_blank"
+          >Wiki Loves Earth 2020</a
+        >{" "}(Malaysia). Shot at Bukit Jugra, February 2020.
+      </figcaption>
+    </figure>
+  </section>
+
+  {
+    gallery.length > 0 && (
+      <section class="block">
+        <h2>A few favourites</h2>
+        <div class="gallery">
+          {gallery.map((photo) => (
+            <figure>
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                widths={[300, 600]}
+                sizes="(max-width: 40rem) 50vw, 20rem"
+                loading="lazy"
+              />
+              <figcaption>{photo.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="block">
+    <h2>Seen in the wild</h2>
+    <p class="muted note">
+      Because my photos are openly licensed, others are free to reuse them with
+      attribution. A few places they've turned up:
+    </p>
+
+    <h3 class="sub">Featured in</h3>
+    <ul class="links">
+      {
+        featuredIn.map((item) => (
+          <li>
+            <a href={item.href} rel="noopener" target="_blank">
+              <span class="site">{item.site}</span>
+              <span class="title">{item.title}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h3 class="sub">Also appeared on</h3>
+    <ul class="links">
+      {
+        alsoOn.map((item) => (
+          <li>
+            <a href={item.href} rel="noopener" target="_blank">
+              <span class="site">{item.site}</span>
+              <span class="title">{item.title}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <hr />
+  <p class="muted licence">
+    All photos are licensed{" "}
+    <a
+      href="https://creativecommons.org/licenses/by-sa/4.0/"
+      rel="noopener"
+      target="_blank">CC BY-SA 4.0</a
+    >{" "}via my{" "}
+    <a href={COMMONS_PROFILE} rel="noopener" target="_blank"
+      >Wikimedia Commons profile</a
+    >. Reuse is welcome — attribution is all I ask.
+  </p>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 36rem;
+    margin-bottom: 2.5rem;
+  }
+  .block {
+    margin: 0 0 2.75rem;
+  }
+  .block h2 {
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin: 0 0 0.9rem;
+  }
+  .winner {
+    margin: 0;
+    max-width: 22rem;
+  }
+  .winner :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: block;
+  }
+  figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+  }
+  .gallery figure {
+    margin: 0;
+  }
+  .gallery :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: block;
+  }
+  .note {
+    max-width: 36rem;
+    margin: -0.3rem 0 1.25rem;
+  }
+  .sub {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin: 1.25rem 0 0.5rem;
+  }
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 40rem;
+  }
+  .links li {
+    border-bottom: 1px solid var(--border);
+  }
+  .links a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    color: var(--text);
+  }
+  .links a:hover {
+    text-decoration: none;
+  }
+  .links a:hover .title {
+    color: var(--accent);
+  }
+  .links .site {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .links .title {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: right;
+  }
+  .licence {
+    font-size: 0.9rem;
+    max-width: 40rem;
+  }
+</style>

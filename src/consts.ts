@@ -10,6 +10,7 @@ export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Writing" },
   { href: "/about", label: "About" },
+  { href: "/photography", label: "Photography" },
   { href: "/search", label: "Search" },
 ];
 
