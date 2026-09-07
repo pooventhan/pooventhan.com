@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Uses"
+  description="The hardware, editors, and tools Pooventhan uses day to day."
+>
+  <p class="eyebrow">Uses</p>
+  <h1>What I use</h1>
+  <p class="muted intro">
+    The gear and software I reach for most. Inspired by{" "}
+    <a href="https://uses.tech/" rel="noopener" target="_blank">uses.tech</a>.
+  </p>
+
+  <section class="block">
+    <h2>Desk &amp; hardware</h2>
+    <ul>
+      <li><strong>MacBook Pro (M1 Pro)</strong> — main machine</li>
+      <li><strong>Keychron K2 Pro</strong> — keyboard</li>
+      <li><strong>Logitech Pebble Mouse 2</strong> — mouse</li>
+      <li><strong>Poly Voyager Focus 2</strong> — headset</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Editors &amp; terminal</h2>
+    <ul>
+      <li>
+        <a href="https://code.visualstudio.com/" rel="noopener" target="_blank"
+          >VS Code</a
+        >
+      </li>
+      <li><a href="https://cursor.com/" rel="noopener" target="_blank">Cursor</a></li>
+      <li>Google Antigravity</li>
+      <li><code>zsh</code></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Languages &amp; frameworks</h2>
+    <ul>
+      <li>Java</li>
+      <li>Spring Boot</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Testing &amp; automation</h2>
+    <ul>
+      <li><a href="https://playwright.dev/" rel="noopener" target="_blank">Playwright</a></li>
+      <li><a href="https://www.selenium.dev/" rel="noopener" target="_blank">Selenium</a></li>
+      <li><a href="https://testcontainers.com/" rel="noopener" target="_blank">Testcontainers</a></li>
+      <li><a href="https://www.postman.com/" rel="noopener" target="_blank">Postman</a></li>
+      <li><a href="https://www.usebruno.com/" rel="noopener" target="_blank">Bruno</a></li>
+      <li><a href="https://jmeter.apache.org/" rel="noopener" target="_blank">JMeter</a></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Infrastructure &amp; cloud</h2>
+    <ul>
+      <li><a href="https://www.docker.com/" rel="noopener" target="_blank">Docker</a></li>
+      <li>Google Cloud Platform</li>
+      <li>Microsoft Azure</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Homelab</h2>
+    <ul>
+      <li>
+        <strong>Raspberry Pi 4</strong> — running{" "}
+        <a href="https://openclaw.ai/" rel="noopener" target="_blank">OpenClaw</a
+        > (see what I'm <a href="/now/">building with it now</a>)
+      </li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Camera</h2>
+    <ul>
+      <li><strong>Sony α6400</strong> with the 18–105mm lens</li>
+    </ul>
+  </section>
+
+  {/* TODO: add an "Everyday apps" section (browser, notes, tasks, password manager) when ready. */}
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 34rem;
+    margin-bottom: 2.5rem;
+  }
+  .block {
+    margin: 0 0 2rem;
+  }
+  .block h2 {
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin: 0 0 0.6rem;
+  }
+  .block ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    max-width: 40rem;
+  }
+  .block li {
+    margin: 0.25rem 0;
+  }
+</style>

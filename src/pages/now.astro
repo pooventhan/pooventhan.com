@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+
+// Bump this whenever you update the page.
+const updated = new Date("2026-09-08");
+---
+
+<BaseLayout
+  title="Now"
+  description="What Pooventhan is focused on right now — current work, tinkering, and reading."
+>
+  <p class="eyebrow">Now</p>
+  <h1>What I'm doing now</h1>
+  <p class="muted intro">
+    A snapshot of what has my attention lately. Last updated{" "}
+    <FormattedDate date={updated} />.
+  </p>
+
+  <section class="block">
+    <h2>Currently</h2>
+    <p>Building and breaking things, every day.</p>
+  </section>
+
+  <section class="block">
+    <h2>Tinkering</h2>
+    <p>
+      Running <a href="https://openclaw.ai/" rel="noopener" target="_blank"
+        >OpenClaw</a
+      > on a Raspberry Pi 4 — a self-hosted, open-source AI assistant. I've wired
+      it up as a Telegram bot for personal tasks: generating invoices and pulling
+      SMS off my remote 5G router.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Reading</h2>
+    <ul>
+      <li><em>How to Know Everything</em></li>
+      <li><em>Men Are from Mars, Women Are from Venus</em></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Open to</h2>
+    <p>
+      Freelance software projects and tutoring. If that's you,{" "}
+      <a href="/about/">get in touch</a>.
+    </p>
+  </section>
+
+  {/* TODO: add a "Next on the blog" section when you have topics lined up. */}
+
+  <p class="muted foot">
+    This is a <a href="https://nownownow.com/about" rel="noopener" target="_blank"
+      >now page</a
+    >, and if you have your own site, you should make one too.
+  </p>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 34rem;
+    margin-bottom: 2.5rem;
+  }
+  .block {
+    margin: 0 0 2rem;
+  }
+  .block h2 {
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin: 0 0 0.5rem;
+  }
+  .block p,
+  .block ul {
+    margin: 0;
+    max-width: 40rem;
+  }
+  .block ul {
+    padding-left: 1.1rem;
+  }
+  .block li {
+    margin: 0.15rem 0;
+  }
+  .foot {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    max-width: 40rem;
+  }
+</style>

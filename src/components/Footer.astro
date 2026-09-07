@@ -6,16 +6,22 @@ const year = new Date().getFullYear();
 <footer>
   <div class="wrap inner">
     <p class="muted">© {year} Pooventhan Supramaniam</p>
-    <nav aria-label="Social" class="links">
-      {
-        SOCIAL_LINKS.map((link) => (
-          <a href={link.href} rel="me noopener" target="_blank">
-            {link.label}
-          </a>
-        ))
-      }
-      <a href="/rss.xml">RSS</a>
-    </nav>
+    <div class="navs">
+      <nav aria-label="More" class="links">
+        <a href="/now/">Now</a>
+        <a href="/uses/">Uses</a>
+      </nav>
+      <nav aria-label="Social" class="links">
+        {
+          SOCIAL_LINKS.map((link) => (
+            <a href={link.href} rel="me noopener" target="_blank">
+              {link.label}
+            </a>
+          ))
+        }
+        <a href="/rss.xml">RSS</a>
+      </nav>
+    </div>
   </div>
 </footer>
 
@@ -34,6 +40,11 @@ const year = new Date().getFullYear();
   }
   .inner p {
     margin: 0;
+  }
+  .navs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem 1.75rem;
   }
   .links {
     display: flex;
