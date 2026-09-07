@@ -2,13 +2,14 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
+import { slugifyTag } from "../utils/tags";
 
 type Props = CollectionEntry<"blog">["data"];
 const { title, description, pubDate, updatedDate, tags } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description ?? title}>
-  <article>
+  <article data-pagefind-body>
     <header class="post-head">
       <p class="post-meta">
         <FormattedDate date={pubDate} />
@@ -27,7 +28,9 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
         tags.length > 0 && (
           <p class="tags">
             {tags.map((t) => (
-              <span class="tag">{t}</span>
+              <a class="tag" href={`/tags/${slugifyTag(t)}/`}>
+                {t}
+              </a>
             ))}
           </p>
         )

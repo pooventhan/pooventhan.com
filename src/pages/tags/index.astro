@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getAllTags } from "../../utils/tags";
+
+const tags = await getAllTags();
+---
+
+<BaseLayout
+  title="Topics"
+  description="Browse writing by topic — testing, automation, backend engineering, and more."
+>
+  <p class="eyebrow">Topics</p>
+  <h1>Browse by topic</h1>
+  <p class="muted intro">
+    Every subject I've written about, most-used first.
+  </p>
+
+  {
+    tags.length === 0 ? (
+      <p class="muted">No tags yet.</p>
+    ) : (
+      <ul class="tag-cloud">
+        {tags.map((t) => (
+          <li>
+            <a class="tag tag-lg" href={`/tags/${t.slug}/`}>
+              {t.tag}
+              <span class="count">{t.count}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 34rem;
+    margin-bottom: 2rem;
+  }
+  .tag-cloud {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .tag-lg {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.85rem;
+  }
+  .count {
+    margin-left: 0.4rem;
+    color: var(--text-faint);
+  }
+</style>

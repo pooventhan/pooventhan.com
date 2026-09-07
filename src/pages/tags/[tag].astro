@@ -1,0 +1,94 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import { getAllTags, getPublishedPosts, slugifyTag } from "../../utils/tags";
+
+export const getStaticPaths = (async () => {
+  const [tags, posts] = await Promise.all([getAllTags(), getPublishedPosts()]);
+  return tags.map((t) => ({
+    params: { tag: t.slug },
+    props: {
+      tag: t.tag,
+      posts: posts.filter((p) => p.data.tags.some((x) => slugifyTag(x) === t.slug)),
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`Tagged “${tag}”`}
+  description={`Posts tagged ${tag}.`}
+>
+  <p class="eyebrow"><a href="/tags/">Topics</a></p>
+  <h1>Tagged “{tag}”</h1>
+  <p class="muted intro">
+    {posts.length} {posts.length === 1 ? "post" : "posts"} tagged with{" "}
+    <strong>{tag}</strong>.
+  </p>
+
+  <ul class="post-list">
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}/`} class="post-card">
+            <p class="post-date">
+              <FormattedDate date={post.data.pubDate} />
+            </p>
+            <h2 class="post-title">{post.data.title}</h2>
+            {post.data.description && (
+              <p class="post-desc">{post.data.description}</p>
+            )}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="back"><a href="/tags/">← All topics</a></p>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 34rem;
+    margin-bottom: 2rem;
+  }
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .post-list li {
+    border-top: 1px solid var(--border);
+  }
+  .post-card {
+    display: block;
+    padding: 1.5rem 0;
+    color: var(--text);
+  }
+  .post-card:hover {
+    text-decoration: none;
+  }
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    margin: 0 0 0.3rem;
+  }
+  .post-title {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+  .post-card:hover .post-title {
+    color: var(--accent);
+  }
+  .post-desc {
+    margin: 0.4rem 0 0;
+    color: var(--text-muted);
+  }
+  .back {
+    margin-top: 2rem;
+  }
+</style>

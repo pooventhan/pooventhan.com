@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Search"
+  description="Search the writing on this site."
+>
+  <p class="eyebrow">Search</p>
+  <h1>Search</h1>
+  <p class="muted intro">Full-text search across everything I've written.</p>
+
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  <div id="search"></div>
+
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    function initSearch() {
+      var el = document.getElementById("search");
+      if (!el || el.dataset.ready) return;
+      if (typeof PagefindUI === "undefined") {
+        setTimeout(initSearch, 50);
+        return;
+      }
+      el.dataset.ready = "1";
+      new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        showImages: false,
+      });
+    }
+    // Runs on first load and after every view-transition navigation.
+    document.addEventListener("astro:page-load", initSearch);
+    initSearch();
+  </script>
+</BaseLayout>
+
+<style>
+  .intro {
+    max-width: 34rem;
+    margin-bottom: 1.5rem;
+  }
+  #search {
+    --pagefind-ui-primary: var(--accent);
+    --pagefind-ui-text: var(--text);
+    --pagefind-ui-background: var(--bg-elev);
+    --pagefind-ui-border: var(--border);
+    --pagefind-ui-tag: var(--bg-elev);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: var(--radius);
+    --pagefind-ui-font: inherit;
+  }
+</style>
